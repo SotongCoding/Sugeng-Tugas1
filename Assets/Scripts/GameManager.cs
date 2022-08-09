@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         isGameEnd = false;
+        Time.timeScale = 1;
     }
 
 
