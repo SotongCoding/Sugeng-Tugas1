@@ -39,6 +39,38 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverUI;
 
 
+    private void Update()
+    {
+        RayObject();
+    }
+
+    void RayObject()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(Camera.main.ScreenPointToRay(Input.mousePosition));
+            //make sure you have a camera in the scene tagged as 'MainCamera'
+            var hitm = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (hitm.collider.TryGetComponent<ClickUnit>(out var getUnit))
+            {
+                if (getUnit.asZombie)
+                {
+                    Destroy(getUnit.gameObject);
+
+                    GainScore();
+                    AddUnitKilled();
+                }
+                else
+                {
+                    GameOver();
+
+                }
+                unitSpawn++;
+            }
+        }
+    }
+
     public void GameOver()
     {
         isGameEnd = true;
@@ -46,7 +78,6 @@ public class GameManager : MonoBehaviour
         GameOverUI.SetActive(true);
         Time.timeScale = 0;
     }
-
     public void ReduceHealth(int amount)
     {
         currentPlayerHealth -= Mathf.Abs(amount);

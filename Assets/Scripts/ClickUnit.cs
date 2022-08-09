@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ClickUnit : MonoBehaviour
 {
     [SerializeField] float speed = 3;
@@ -9,26 +10,10 @@ public class ClickUnit : MonoBehaviour
 
     [SerializeField] SpriteRenderer visual;
     [SerializeField] Sprite[] avaiableSprites;
+
     private void Update()
     {
-        transform.Translate(Vector2.down * Time.deltaTime * speed);
-    }
-    private void OnMouseDown()
-    {
-        if (asZombie)
-        {
-            Destroy(gameObject);
-
-            GameManager.Instance.GainScore();
-
-            GameManager.Instance.AddUnitKilled();
-        }
-        else
-        {
-            GameManager.Instance.GameOver();
-
-        }
-        GameManager.Instance.unitSpawn++;
+        transform.Translate(speed * Time.deltaTime * Vector2.down);
     }
 
     internal void InitialStatus()
