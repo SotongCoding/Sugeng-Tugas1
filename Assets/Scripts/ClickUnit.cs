@@ -18,8 +18,8 @@ public class ClickUnit : MonoBehaviour
 
     internal void InitialStatus()
     {
-        asZombie = Random.Range(0, 101) >= 10 ? true : false; //10% human
-        speed = speed + (speed * GameManager.Instance.speedMltiper);
+        asZombie = Random.Range(0, 101) >= 10; //10% human
+        speed += (speed * GameManager.Instance.speedMltiper);
 
         visual.sprite = avaiableSprites[asZombie ? 0 : 1];
     }

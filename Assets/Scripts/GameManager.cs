@@ -88,19 +88,19 @@ public class GameManager : MonoBehaviour
     public void GainScore()
     {
         currentPlayerScore += 10 +
-                (survivedHuman / 5) +
-                (unitKilled / 10);
-        scoreText.text = "Score : \n" + currentPlayerScore.ToString();
+                (survivedHuman / 3) +
+                (unitKilled / 7);
+        scoreText.text = currentPlayerScore.ToString();
     }
     public void AddUnitKilled()
     {
         unitKilled++;
-        unitKilledText.text = "Killed Zombie : " + unitKilled.ToString();
+        unitKilledText.text = "Kill : " + unitKilled.ToString();
     }
     public void AddSurvivedUnit()
     {
         survivedHuman++;
-        unitSurvivedText.text = "Survive Human :" + survivedHuman.ToString();
+        unitSurvivedText.text = "Survive :" + survivedHuman.ToString();
     }
     public void ChangeWave()
     {

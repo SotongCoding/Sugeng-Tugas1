@@ -26,11 +26,11 @@ public class UnitSpawner : MonoBehaviour
         {
             while (counterSpawn < waveData.spawnUnitAmount)
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f - (1f * GameManager.Instance.speedMltiper / 3));
                 CreateUnit();
                 counterSpawn++;
             }
-            while(GameManager.Instance.unitSpawn < waveData.spawnUnitAmount)
+            while (GameManager.Instance.unitSpawn < waveData.spawnUnitAmount)
             {
                 yield return null;
             }
