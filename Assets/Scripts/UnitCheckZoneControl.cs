@@ -17,7 +17,7 @@ public class UnitCheckZoneControl : MonoBehaviour
                 Debug.Log("Gain Score for Humman pass");
                 GameManager.Instance.GainScore(10);
             }
-
+            GameManager.Instance.unitSpawn++;
             Destroy(collision.gameObject);
         }
     }

@@ -18,7 +18,7 @@ public class UnitSpawner : MonoBehaviour
     void SpawnWave(WaveData waveData)
     {
         if (GameManager.Instance.isGameEnd) return;
-        GameManager.Instance.speedMltiper += 0.3f;
+        GameManager.Instance.ChangeWave();
         int counterSpawn = 0;
         StartCoroutine(SpawnUnit());
 
@@ -29,6 +29,10 @@ public class UnitSpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 CreateUnit();
                 counterSpawn++;
+            }
+            while(GameManager.Instance.unitSpawn < waveData.spawnUnitAmount)
+            {
+                yield return null;
             }
 
             yield return new WaitForSeconds(waveData.delayNextWave);
