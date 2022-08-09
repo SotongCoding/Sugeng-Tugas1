@@ -18,7 +18,10 @@ public class ClickUnit : MonoBehaviour
         if (asZombie)
         {
             Destroy(gameObject);
-            GameManager.Instance.GainScore(10);
+
+            GameManager.Instance.GainScore();
+
+            GameManager.Instance.AddUnitKilled();
         }
         else
         {

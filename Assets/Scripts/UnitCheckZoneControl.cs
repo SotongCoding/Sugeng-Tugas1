@@ -15,7 +15,8 @@ public class UnitCheckZoneControl : MonoBehaviour
             else
             {
                 Debug.Log("Gain Score for Humman pass");
-                GameManager.Instance.GainScore(10);
+                GameManager.Instance.GainScore();
+                GameManager.Instance.AddSurvivedUnit();
             }
             GameManager.Instance.unitSpawn++;
             Destroy(collision.gameObject);
