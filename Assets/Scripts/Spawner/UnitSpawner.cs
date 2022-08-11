@@ -69,7 +69,6 @@ namespace Sugeng.TapZombie.Spawner
         [System.Serializable]
         public class PoolUnit<T> where T : BaseUnit
         {
-
             [SerializeField] List<UnitSpawnData> variationUnits;
             public T GetObject()
             {
