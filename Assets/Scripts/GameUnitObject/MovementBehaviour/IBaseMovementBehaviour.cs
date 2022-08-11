@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBaseMovementBehaviour
+namespace Sugeng.TapZombie.GameUnit.MoveBhv
 {
-    BaseUnit unit { get;}
-    public void Move();
+    public interface IBaseMovementBehaviour
+    {
+        BaseUnit unit { get; }
+        public void Move();
+    }
 }
