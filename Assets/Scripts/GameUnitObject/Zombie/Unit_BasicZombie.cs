@@ -6,9 +6,13 @@ namespace Sugeng.TapZombie.GameUnit
 {
     public class Unit_BasicZombie : BaseUnit
     {
-        private void Awake()
+        protected override MoveBhv.IBaseMovementBehaviour MoveLogic
         {
-            moveLogic = new MoveBhv.MoveBhv_StarightDown(this);
+            get
+            {
+                if (moveLogic == null) { moveLogic = new MoveBhv.MoveBhv_StarightDown(this); }
+                return moveLogic;
+            }
         }
         protected override void ReachEndLine()
         {

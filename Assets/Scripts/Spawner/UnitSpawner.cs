@@ -15,6 +15,8 @@ namespace Sugeng.TapZombie.Spawner
         [SerializeField] PoolUnit<Unit_BasicHuman> humanPool;
         [SerializeField] PoolUnit<Unit_BasicZombie> zombiePool;
 
+        [SerializeField] Transform humanPos, zombiePos;
+
 
 
         private void Start()
@@ -28,7 +30,7 @@ namespace Sugeng.TapZombie.Spawner
             GameManager.Instance.ChangeWave();
             int counterSpawn = 0;
             StartCoroutine(SpawnUnit());
-
+            ////////////-----------------------------
             IEnumerator SpawnUnit()
             {
                 while (counterSpawn < waveData.spawnUnitAmount)
@@ -45,13 +47,15 @@ namespace Sugeng.TapZombie.Spawner
                 yield return new WaitForSeconds(waveData.delayNextWave);
                 SpawnWave(waves[Random.Range(0, waves.Length)]);
             }
-
+            ////////////-----------------------------
             void CreateUnit()
             {
                 bool asZombie = Random.Range(1, 101) > 10;
                 BaseUnit createdUnit = asZombie ? zombiePool.GetObject() : humanPool.GetObject();
                 createdUnit.gameObject.SetActive(true);
                 createdUnit.transform.position = spawnPos[Random.Range(0, spawnPos.Length)].position;
+
+                createdUnit.transform.SetParent(asZombie ? zombiePos : humanPos);
             }
         }
 

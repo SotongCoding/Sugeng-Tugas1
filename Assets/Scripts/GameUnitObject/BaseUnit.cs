@@ -11,12 +11,14 @@ namespace Sugeng.TapZombie.GameUnit
         float originSpeed = 3;
         float deathPosY = -6.1f;
 
-        protected  MoveBhv.IBaseMovementBehaviour moveLogic;
-
-        private void Update()
+        protected MoveBhv.IBaseMovementBehaviour moveLogic;
+        protected virtual MoveBhv.IBaseMovementBehaviour MoveLogic
         {
-            CheckEndLine();
-            Move();
+            get
+            {
+                if (moveLogic == null) { moveLogic = new MoveBhv.MoveBhv_StarightDown(this); }
+                return moveLogic;
+            }
         }
 
         private void OnEnable()
@@ -28,19 +30,31 @@ namespace Sugeng.TapZombie.GameUnit
         {
             OnUnitDie -= UnitDeath;
         }
+
+        private void Update()
+        {
+            Move();
+        }
+        private void LateUpdate()
+        {
+            CheckEndLine();
+        }
+
         protected void Move()
         {
-            moveLogic.Move();
+            MoveLogic.Move();
         }
 
         protected abstract void UnitDeath();
         protected abstract void ReachEndLine();
 
+        //When Player Click it
         void Utils.Ray2D.IRayObject.OnHitRayEvent()
         {
             OnUnitDie?.Invoke();
             gameObject.SetActive(false);
         }
+        //When unit reach endLine
         void CheckEndLine()
         {
             if (transform.position.y <= deathPosY)

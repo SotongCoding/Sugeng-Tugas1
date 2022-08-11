@@ -5,9 +5,13 @@ namespace Sugeng.TapZombie.GameUnit
 {
     public class Unit_ZigZagZombie : Unit_BasicZombie
     {
-        private void Awake()
+        protected override MoveBhv.IBaseMovementBehaviour MoveLogic
         {
-            moveLogic = new MoveBhv.MoveBhv_ZigZag(this);
+            get
+            {
+                if (moveLogic == null) { moveLogic = new MoveBhv.MoveBhv_ZigZag(this); }
+                return moveLogic;
+            }
         }
     }
 }
