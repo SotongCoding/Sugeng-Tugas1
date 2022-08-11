@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit_BasicZombie : BaseUnit
+namespace Sugeng.TapZombie.GameUnit
 {
-    private void Awake()
+    public class Unit_BasicZombie : BaseUnit
     {
-        moveLogic = new MoveBhv_StarightDown(this);
-    }
-    protected override void ReachEndLine()
-    {
-        if (gameObject.activeSelf)
+        private void Awake()
         {
-            GameManager.Instance.ReduceHealth();
-            GameManager.Instance.unitSpawn++;
+            moveLogic = new MoveBhv.MoveBhv_StarightDown(this);
+        }
+        protected override void ReachEndLine()
+        {
+            if (gameObject.activeSelf)
+            {
+                GameManager.Instance.ReduceHealth();
+                GameManager.Instance.unitSpawn++;
+            }
+
+
         }
 
-
-    }
-
-    protected override void UnitDeath()
-    {
-        GameManager.Instance.GainScore();
-        GameManager.Instance.AddUnitKilled();
-        GameManager.Instance.unitSpawn++;
+        protected override void UnitDeath()
+        {
+            GameManager.Instance.GainScore();
+            GameManager.Instance.AddUnitKilled();
+            GameManager.Instance.unitSpawn++;
+        }
     }
 }

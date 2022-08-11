@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 using TMPro;
 
+
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RayObjectManager.RayObject2D(Input.mousePosition);
+            Sugeng.TapZombie.Utils.Ray2D.RayObjectManager.RayObject2D(Input.mousePosition);
         }
     }
 
