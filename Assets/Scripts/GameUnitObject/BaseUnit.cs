@@ -6,7 +6,10 @@ namespace Sugeng.TapZombie.GameUnit
 {
     public abstract class BaseUnit : MonoBehaviour, Utils.Ray2D.IRayObject
     {
+        //Event
         public System.Action OnUnitDie;
+        public System.Action OnUnitReachEndLine;
+
         public float speed { private set; get; } = 3;
         float originSpeed = 3;
         float deathPosY = -6.1f;
@@ -24,11 +27,6 @@ namespace Sugeng.TapZombie.GameUnit
         private void OnEnable()
         {
             speed = originSpeed + (originSpeed * GameManager.Instance.speedMltiper);
-            OnUnitDie += UnitDeath;
-        }
-        private void OnDisable()
-        {
-            OnUnitDie -= UnitDeath;
         }
 
         private void Update()
@@ -45,9 +43,7 @@ namespace Sugeng.TapZombie.GameUnit
             MoveLogic.Move();
         }
 
-        protected abstract void UnitDeath();
-        protected abstract void ReachEndLine();
-
+        public abstract void Initial();
         //When Player Click it
         void Utils.Ray2D.IRayObject.OnHitRayEvent()
         {
@@ -57,9 +53,9 @@ namespace Sugeng.TapZombie.GameUnit
         //When unit reach endLine
         void CheckEndLine()
         {
-            if (transform.position.y <= deathPosY)
+            if (transform.position.y <= deathPosY && gameObject.activeSelf)
             {
-                ReachEndLine();
+                OnUnitReachEndLine?.Invoke();
                 gameObject.SetActive(false);
             }
         }
