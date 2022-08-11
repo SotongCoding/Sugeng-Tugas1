@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IRayObject
+namespace Sugeng.TapZombie.Utils.Ray2D
 {
-    void OnHitRayEvent();
+    public interface IRayObject
+    {
+        void OnHitRayEvent();
+    }
 }
