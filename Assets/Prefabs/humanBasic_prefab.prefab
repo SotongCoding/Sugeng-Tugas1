@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2817665949840895622}
   - component: {fileID: 2817665949840895620}
-  - component: {fileID: 2817665949840895623}
+  - component: {fileID: 529741754032601502}
   m_Layer: 0
-  m_Name: ClickUnit
+  m_Name: humanBasic_prefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &2817665949840895623
+--- !u!114 &529741754032601502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,14 +59,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2817665949840895627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644e4e497699eeb42a04e7a2b5d096fc, type: 3}
+  m_Script: {fileID: 11500000, guid: f7242a9c5d445fa45949e53c361e60c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  visual: {fileID: 2206987582360120633}
-  avaiableSprites:
-  - {fileID: 21300000, guid: 34504ae137fbdd64f857eda3bdd7d873, type: 3}
-  - {fileID: 21300000, guid: c0b4f93e95aa42748b2fc1f94ec4238a, type: 3}
+  deathPosY: 5
 --- !u!1 &5285353988329740233
 GameObject:
   m_ObjectHideFlags: 0
