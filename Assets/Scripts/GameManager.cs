@@ -30,13 +30,7 @@ public class GameManager : MonoBehaviour
     public float speedMltiper => 0.2f * currentWave;
 
     [Header("UI-Section")]
-    [SerializeField] Image[] healthBars;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI waveText;
-    public TextMeshProUGUI unitKilledText;
-    public TextMeshProUGUI unitSurvivedText;
-
-    public GameObject GameOverUI;
+    [SerializeField] UI_GameUIControl uiGameControl;
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -48,15 +42,13 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameEnd = true;
-        Debug.Log("Game Over Bro");
-        GameOverUI.SetActive(true);
+        uiGameControl.ShowGameOverUI();
         Time.timeScale = 0;
     }
-    public void ReduceHealth(int amount =1)
+    public void ReduceHealth(int amount = 1)
     {
         currentPlayerHealth -= Mathf.Abs(amount);
-        healthBars[currentPlayerHealth].gameObject.SetActive(false);
-
+        uiGameControl.ChangeHealthBar(currentPlayerHealth);
         if (currentPlayerHealth <= 0) GameOver();
     }
     public void GainScore()
@@ -64,22 +56,23 @@ public class GameManager : MonoBehaviour
         currentPlayerScore += 10 +
                 (survivedHuman / 3) +
                 (unitKilled / 7);
-        scoreText.text = currentPlayerScore.ToString();
+
+        uiGameControl.ChangeScoreText(currentPlayerScore);
     }
     public void AddUnitKilled()
     {
         unitKilled++;
-        unitKilledText.text = "Kill : " + unitKilled.ToString();
+        uiGameControl.ChangeZombiKilledText(unitKilled);
     }
     public void AddSurvivedUnit()
     {
         survivedHuman++;
-        unitSurvivedText.text = "Survive :" + survivedHuman.ToString();
+        uiGameControl.ChangeUnitSurviveText(survivedHuman);
     }
     public void ChangeWave()
     {
         currentWave++;
-        waveText.text = "Wave : " + currentWave.ToString();
+        uiGameControl.ChangeWaveText(currentWave);
     }
     public void Retry()
     {
