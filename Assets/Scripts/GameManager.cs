@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.UI;
-
 using TMPro;
-
-
-
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +14,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         isGameEnd = false;
         Time.timeScale = 1;
+        // Ada Kesalahan untuk Branch Tugas 3 LOL
     }
 
 
