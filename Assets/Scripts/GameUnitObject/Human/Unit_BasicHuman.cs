@@ -7,28 +7,16 @@ namespace Sugeng.TapZombie.GameUnit
 {
     public class Unit_BasicHuman : BaseUnit
     {
-        protected override IBaseMovementBehaviour MoveLogic
-        {
-            get
-            {
-                if (moveLogic == null) { moveLogic = new MoveBhv.MoveBhv_StarightDown(this); }
-                return moveLogic;
-            }
+        private void Awake() {
+            Initial();
         }
-        protected override void ReachEndLine()
+        public override void Initial()
         {
-            if (gameObject.activeSelf)
-            {
-                GameManager.Instance.GainScore();
-                GameManager.Instance.AddSurvivedUnit();
-                GameManager.Instance.unitSpawn++;
-            }
+            base.OnUnitReachEndLine += GameManager.Instance.GainScore;
+            base.OnUnitReachEndLine += GameManager.Instance.AddSurvivedUnit;
+            base.OnUnitReachEndLine += () => { GameManager.Instance.unitSpawn++; };
 
-        }
-
-        protected override void UnitDeath()
-        {
-            GameManager.Instance.GameOver();
+            base.OnUnitDie += GameManager.Instance.GameOver;
         }
     }
 }

@@ -52,9 +52,10 @@ namespace Sugeng.TapZombie.Spawner
             {
                 bool asZombie = Random.Range(1, 101) > 10;
                 BaseUnit createdUnit = asZombie ? zombiePool.GetObject() : humanPool.GetObject();
+                
+
                 createdUnit.gameObject.SetActive(true);
                 createdUnit.transform.position = spawnPos[Random.Range(0, spawnPos.Length)].position;
-
                 createdUnit.transform.SetParent(asZombie ? zombiePos : humanPos);
             }
         }
