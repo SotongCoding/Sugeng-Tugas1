@@ -16,7 +16,7 @@ namespace Sugeng.TapZombie.GameUnit
             base.OnUnitReachEndLine += GameManager.Instance.AddSurvivedUnit;
             base.OnUnitReachEndLine += () => { GameManager.Instance.unitSpawn++; };
 
-            base.OnUnitReachEndLine += GameManager.Instance.GameOver;
+            base.OnUnitDie += GameManager.Instance.GameOver;
         }
     }
 }
